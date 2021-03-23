@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text } from '@pancakeswap-libs/uikit'
+import { Text } from 'jetswap-uikit2'
 import { useWeb3React } from '@web3-react/core'
 import useTokenBalance from 'hooks/useTokenBalance'
 import useI18n from 'hooks/useI18n'
@@ -18,7 +18,7 @@ const CakeWalletBalance = () => {
 
   if (!account) {
     return (
-      <Text color="textDisabled" style={{ lineHeight: '54px' }}>
+      <Text fontSize="36px" color="text" style={{ lineHeight: '54px' }}>
         {TranslateString(298, 'Locked')}
       </Text>
     )

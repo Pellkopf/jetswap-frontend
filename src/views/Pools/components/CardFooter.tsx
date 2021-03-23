@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { getBalanceNumber } from 'utils/formatBalance'
 import useI18n from 'hooks/useI18n'
 import { ChevronDown, ChevronUp } from 'react-feather'
-import { Flex, MetamaskIcon } from '@pancakeswap-libs/uikit'
+import { Flex, MetamaskIcon } from 'jetswap-uikit2'
 import Balance from 'components/Balance'
 import { CommunityTag, CoreTag, BinanceTag } from 'components/Tags'
 import { useBlock } from 'state/hooks'
@@ -41,7 +41,7 @@ const StyledDetailsButton = styled.button`
   align-items: center;
   background-color: transparent;
   border: 0;
-  color: ${(props) => props.theme.colors.primary};
+  color: ${(props) => props.theme.colors.text};
   cursor: pointer;
   display: inline-flex;
   font-size: 16px;
@@ -72,6 +72,7 @@ const FlexFull = styled.div`
 `
 const Label = styled.div`
   font-size: 14px;
+  color: ${(props) => props.theme.colors.textDisabled}
 `
 const TokenLink = styled.a`
   font-size: 14px;
@@ -121,7 +122,7 @@ const CardFooter: React.FC<Props> = ({
             <FlexFull>
               <Label>
                 <span role="img" aria-label="syrup">
-                  🥞{' '}
+                  🛢️{' '}
                 </span>
                 {TranslateString(408, 'Total')}
               </Label>

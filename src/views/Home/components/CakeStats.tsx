@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, CardBody, Heading, Text } from '@pancakeswap-libs/uikit'
+import { Card, CardBody, Heading, Text } from 'jetswap-uikit2'
 import styled from 'styled-components'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { useTotalSupply, useBurnedBalance } from 'hooks/useTokenBalance'
@@ -7,17 +7,18 @@ import useI18n from 'hooks/useI18n'
 import { getCakeAddress } from 'utils/addressHelpers'
 import CardValue from './CardValue'
 
-const StyledCakeStats = styled(Card)`
-  margin-left: auto;
-  margin-right: auto;
+const StyledWingsStats = styled(Card)`
+  background-image: url('/images/jet/bg2.svg');
+  background-repeat: no-repeat;
+  background-position: bottom right;
+  min-height: 376px;
 `
 
-const Row = styled.div`
-  align-items: center;
-  display: flex;
-  font-size: 14px;
-  justify-content: space-between;
-  margin-bottom: 8px;
+const Block = styled.div`
+  margin-bottom: 16px;
+`
+const CardImage = styled.img`
+  margin-bottom: 16px;
 `
 
 const CakeStats = () => {
@@ -27,25 +28,26 @@ const CakeStats = () => {
   const cakeSupply = totalSupply ? getBalanceNumber(totalSupply) - burnedBalance : 0
 
   return (
-    <StyledCakeStats>
+    <StyledWingsStats>
       <CardBody>
         <Heading size="xl" mb="24px">
-          {TranslateString(534, 'Cake Stats')}
+          {TranslateString(534, "WINGS Stats")}
         </Heading>
-        <Row>
-          <Text fontSize="14px">{TranslateString(536, 'Total CAKE Supply')}</Text>
-          {cakeSupply && <CardValue fontSize="14px" value={cakeSupply} />}
-        </Row>
-        <Row>
-          <Text fontSize="14px">{TranslateString(538, 'Total CAKE Burned')}</Text>
-          <CardValue fontSize="14px" decimals={0} value={burnedBalance} />
-        </Row>
-        <Row>
-          <Text fontSize="14px">{TranslateString(540, 'New CAKE/block')}</Text>
-          <CardValue fontSize="14px" decimals={0} value={25} />
-        </Row>
+        <CardImage src="/images/jet/wings.svg" alt="wings logo" width={64} height={64} />
+        <Block>
+          {cakeSupply && <CardValue fontSize="36px" value={cakeSupply} />}
+          <Text fontSize="14px" color="#808080">{TranslateString(536, "Total WINGS Supply")}</Text>
+        </Block>
+        <Block>
+          <CardValue fontSize="36px" decimals={0} value={burnedBalance} />
+          <Text fontSize="14px" color="#808080">{TranslateString(538, "Total WINGS Burned")}</Text>
+        </Block>
+        <Block>
+          <CardValue fontSize="36px" decimals={0} value={25} />
+          <Text fontSize="14px" color="#808080">{TranslateString(540, "New WINGS/block")}</Text>
+        </Block>
       </CardBody>
-    </StyledCakeStats>
+    </StyledWingsStats>
   )
 }
 

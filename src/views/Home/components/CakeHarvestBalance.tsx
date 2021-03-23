@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text } from '@pancakeswap-libs/uikit'
+import { Text } from 'jetswap-uikit2'
 import { useWeb3React } from '@web3-react/core'
 import BigNumber from 'bignumber.js'
 import useI18n from 'hooks/useI18n'
@@ -25,7 +25,7 @@ const CakeHarvestBalance = () => {
 
   if (!account) {
     return (
-      <Text color="textDisabled" style={{ lineHeight: '76px' }}>
+      <Text fontSize="36px" color="text" style={{ lineHeight: '76px' }}>
         {TranslateString(298, 'Locked')}
       </Text>
     )

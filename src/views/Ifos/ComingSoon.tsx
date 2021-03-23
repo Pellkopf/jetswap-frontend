@@ -1,7 +1,7 @@
 // @ts-nocheck
 import React from 'react'
 import styled from 'styled-components'
-import { Button, Text } from '@pancakeswap-libs/uikit'
+import { Button, Text } from 'jetswap-uikit2'
 import useI18n from 'hooks/useI18n'
 import Page from 'components/layout/Page'
 import Container from 'components/layout/Container'
@@ -55,7 +55,7 @@ const ComingSoon = () => {
       <Content>
         <div>
           <Block>
-            <Title as="h2">{TranslateString(999, 'Coming Soon to PancakeSwap.')}</Title>
+            <Title as="h2">{TranslateString(999, 'Coming Soon to JetSwap.')}</Title>
             <Text mb={3}>
               {TranslateString(
                 504,
@@ -68,7 +68,7 @@ const ComingSoon = () => {
               </LiquidityLink>
             </Text>
             <Text mb={3}>
-              {TranslateString(508, 'The project gets the BNB, PancakeSwap burns the CAKE.')}
+              {TranslateString(508, 'The project gets the BNB, Jetswap burns the WINGS.')}
               <br />
               <strong>{TranslateString(510, 'You get the tokens.')}</strong>
             </Text>
@@ -79,7 +79,7 @@ const ComingSoon = () => {
             <Text mb={3}>
               {TranslateString(
                 514,
-                'Launch your project with PancakeSwap, Binance Smart Chain’s most-used AMM project and liquidity provider, to bring your token directly to the most active and rapidly growing community on BSC.',
+                'Launch your project with JetSwap, Binance Smart Chain’s most-used AMM project and liquidity provider, to bring your token directly to the most active and rapidly growing community on BSC.',
               )}
             </Text>
             <Button

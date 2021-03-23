@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Spinner } from '@pancakeswap-libs/uikit'
+import { Spinner } from 'jetswap-uikit2'
 import Page from './layout/Page'
 
 const Wrapper = styled(Page)`
@@ -12,7 +12,7 @@ const Wrapper = styled(Page)`
 const PageLoader: React.FC = () => {
   return (
     <Wrapper>
-      <Spinner />
+      <Spinner img='/images/jet/logo.gif' size={150}/>
     </Wrapper>
   )
 }

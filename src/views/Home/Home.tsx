@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Heading, Text, BaseLayout } from '@pancakeswap-libs/uikit'
+import { Heading, Text, BaseLayout } from 'jetswap-uikit2'
 import useI18n from 'hooks/useI18n'
 import Page from 'components/layout/Page'
 import FarmStakingCard from 'views/Home/components/FarmStakingCard'
@@ -11,24 +11,22 @@ import EarnAPYCard from 'views/Home/components/EarnAPYCard'
 import EarnAssetCard from 'views/Home/components/EarnAssetCard'
 import WinCard from 'views/Home/components/WinCard'
 
+// Jets
+import Jet1 from './components/Jet1'
+import Jet2 from './components/Jet2'
+import JetMobile from './components/JetMobile'
+
 const Hero = styled.div`
   align-items: center;
-  background-image: url('/images/pan-bg-mobile.svg');
-  background-repeat: no-repeat;
-  background-position: top center;
   display: flex;
   justify-content: center;
   flex-direction: column;
   margin: auto;
   margin-bottom: 32px;
-  padding-top: 116px;
   text-align: center;
 
   ${({ theme }) => theme.mediaQueries.lg} {
-    background-image: url('/images/pan-bg2.svg'), url('/images/pan-bg.svg');
-    background-position: left center, right center;
-    height: 165px;
-    padding-top: 0;
+    padding-top: 40px;
   }
 `
 
@@ -75,34 +73,50 @@ const CTACards = styled(BaseLayout)`
     }
   }
 `
+const Background = styled.div`
+  width: 100%;
+  background-image: url('/images/jet/bg5.svg');
+
+  background-repeat: no-repeat;
+  background-position: center center;
+`
+const Flex = styled.div`
+  display: flex;
+`
+const Container = styled.div``
 
 const Home: React.FC = () => {
   const TranslateString = useI18n()
 
   return (
-    <Page>
-      <Hero>
-        <Heading as="h1" size="xl" mb="24px" color="secondary">
-          {TranslateString(576, 'PancakeSwap')}
-        </Heading>
-        <Text>{TranslateString(578, 'The #1 AMM and yield farm on Binance Smart Chain.')}</Text>
-      </Hero>
-      <div>
-        <Cards>
-          <FarmStakingCard />
-          <LotteryCard />
-        </Cards>
-        <CTACards>
-          <EarnAPYCard />
-          <EarnAssetCard />
-          <WinCard />
-        </CTACards>
-        <Cards>
-          <CakeStats />
-          <TotalValueLockedCard />
-        </Cards>
-      </div>
-    </Page>
+    <Background>
+      <Page>
+        <Hero>
+          <JetMobile />
+          <Flex>
+            <Jet1/>
+            <Container>
+              <Heading as="h1" size="xl" mb="24px" color="text">
+                {TranslateString(576, 'JetSwap')}
+              </Heading>
+              <Text>{TranslateString(578, 'The #1 AMM and yield farm on Binance Smart Chain.')}</Text>
+            </Container>
+            <Jet2/>
+          </Flex>
+        </Hero>
+        <div>
+          <Cards>
+            <FarmStakingCard />
+            <CakeStats />
+          </Cards>
+          <CTACards>
+            <EarnAPYCard />
+            <EarnAssetCard />
+            <TotalValueLockedCard />
+          </CTACards>
+        </div>
+      </Page>
+    </Background>
   )
 }
 

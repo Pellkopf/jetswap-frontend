@@ -1,8 +1,8 @@
 import React from 'react'
-import { Tag, VerifiedIcon, CommunityIcon, BinanceIcon } from '@pancakeswap-libs/uikit'
+import { Tag, VerifiedIcon, CommunityIcon, BinanceIcon } from 'jetswap-uikit2'
 
 const CoreTag = (props) => (
-  <Tag variant="secondary" outline startIcon={<VerifiedIcon />} {...props}>
+  <Tag variant="textSubtle" outline startIcon={<VerifiedIcon />} {...props}>
     Core
   </Tag>
 )

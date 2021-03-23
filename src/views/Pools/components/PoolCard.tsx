@@ -1,7 +1,7 @@
 import BigNumber from 'bignumber.js'
 import React, { useCallback, useState } from 'react'
 import styled from 'styled-components'
-import { Button, IconButton, useModal, AddIcon, Image } from '@pancakeswap-libs/uikit'
+import { Button, IconButton, useModal, AddIcon, Image } from 'jetswap-uikit2'
 import { useWeb3React } from '@web3-react/core'
 import UnlockButton from 'components/UnlockButton'
 import Label from 'components/Label'
@@ -27,6 +27,17 @@ import Card from './Card'
 import OldSyrupTitle from './OldSyrupTitle'
 import HarvestButton from './HarvestButton'
 import CardFooter from './CardFooter'
+
+const StyledUnlockButton = styled(UnlockButton)`
+
+  background: ${({ theme }) => theme.colors.primary};
+  color: #000000;
+  width: 100%;
+  border-radius: 7px;
+`
+const StyledButton = styled(Button)`
+  color: #000000;
+`
 
 interface HarvestProps {
   pool: Pool
@@ -125,7 +136,8 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
         </CardTitle>
         <div style={{ marginBottom: '8px', display: 'flex', alignItems: 'center' }}>
           <div style={{ flex: 1 }}>
-            <Image src={`/images/pools/${poolImage}`} alt={earningToken.symbol} width={64} height={64} />
+            {/* <Image src={`/images/pools/${poolImage}`} alt={earningToken.symbol} width={64} height={64} /> */}
+            <Image src='/images/jet/circle.svg' alt={earningToken.symbol} width={64} height={64} />
           </div>
           {account && harvest && !isOldSyrup && (
             <HarvestButton
@@ -142,26 +154,27 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
         {!isOldSyrup ? (
           <BalanceAndCompound>
             <Balance value={getBalanceNumber(earnings, earningToken.decimals)} isDisabled={isFinished} />
-            {sousId === 0 && account && harvest && (
+            {/* {sousId === 0 && account && harvest && (
               <HarvestButton
                 disabled={!earnings.toNumber() || pendingTx}
                 text={pendingTx ? TranslateString(999, 'Compounding') : TranslateString(704, 'Compound')}
                 onClick={onPresentCompound}
               />
-            )}
+            )} */}
           </BalanceAndCompound>
         ) : (
           <OldSyrupTitle hasBalance={accountHasStakedBalance} />
         )}
         <Label isFinished={isFinished && sousId !== 0} text={TranslateString(330, `${earningToken.symbol} earned`)} />
         <StyledCardActions>
-          {!account && <UnlockButton />}
+          {!account && <StyledUnlockButton />}
           {account &&
             (needsApproval && !isOldSyrup ? (
               <div style={{ flex: 1 }}>
-                <Button disabled={isFinished || requestedApproval} onClick={handleApprove} width="100%">
-                  {`Approve ${stakingToken.symbol}`}
-                </Button>
+                <StyledButton disabled={isFinished || requestedApproval} onClick={handleApprove} width="100%">
+                  {/* {`Approve ${stakingTokenName}`} */}
+                  Approve Contract
+                </StyledButton>
               </div>
             ) : (
               <>
@@ -197,7 +210,12 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
           )}
         </StyledDetails>
         <StyledDetails>
-          <div>{TranslateString(384, 'Your Stake')}:</div>
+          <div style={{ flex: 1 }}>
+            <span role="img" >
+              <img src='/images/jet/barrel.png' alt='barrel' />{' '} 
+            </span>
+            {TranslateString(384, 'Your Stake')}:
+          </div>
           <Balance
             fontSize="14px"
             isDisabled={isFinished}
@@ -254,6 +272,7 @@ const StyledActionSpacer = styled.div`
 
 const StyledDetails = styled.div`
   display: flex;
+  color:  ${({ theme }) => theme.colors.textDisabled};
   justify-content: space-between;
   align-items: center;
   font-size: 14px;

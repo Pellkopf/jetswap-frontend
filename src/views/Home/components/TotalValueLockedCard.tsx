@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Card, CardBody, Heading, Skeleton, Text } from '@pancakeswap-libs/uikit'
+import { Card, CardBody, Heading, Skeleton, Text } from 'jetswap-uikit2'
 import useI18n from 'hooks/useI18n'
 import { useGetStats } from 'hooks/api'
 
@@ -18,13 +18,13 @@ const TotalValueLockedCard = () => {
   return (
     <StyledTotalValueLockedCard>
       <CardBody>
-        <Heading size="lg" mb="24px">
+        <Heading size="lg" mb="14px">
           {TranslateString(762, 'Total Value Locked (TVL)')}
         </Heading>
         {data ? (
           <>
-            <Heading size="xl">{`$${tvl}`}</Heading>
-            <Text color="textSubtle">{TranslateString(764, 'Across all LPs and Syrup Pools')}</Text>
+            <Heading fontSize="32px" size="lg" color="extra">{`$${tvl}`}</Heading>
+            <Text fontSize="18px" color="textDisabled">{TranslateString(764, 'Across all LPs and Pilots Pools')}</Text>
           </>
         ) : (
           <>

@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react'
 import styled, { css } from 'styled-components'
-import { ArrowDropDownIcon, Text } from '@pancakeswap-libs/uikit'
+import { ArrowDropDownIcon, Text } from 'jetswap-uikit2'
 
 const DropDownHeader = styled.div`
   width: 100%;
@@ -21,7 +21,7 @@ const DropDownListContainer = styled.div`
   height: 0;
   position: absolute;
   overflow: hidden;
-  background: ${({ theme }) => theme.colors.input};
+  background: ${({ theme }) => theme.colors.background  };
   z-index: ${({ theme }) => theme.zIndices.dropdown};
   transition: transform 0.15s, opacity 0.15s;
   transform: scaleY(0);

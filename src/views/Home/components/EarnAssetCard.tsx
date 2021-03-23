@@ -1,13 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
 import orderBy from 'lodash/orderBy'
-import { Heading, Card, CardBody, Flex, ArrowForwardIcon } from '@pancakeswap-libs/uikit'
+import { Heading, Card, CardBody, Flex, ArrowForwardIcon } from 'jetswap-uikit2'
 import { NavLink } from 'react-router-dom'
 import pools from 'config/constants/pools'
 import { Pool } from 'state/types'
 
 const StyledFarmStakingCard = styled(Card)`
-  background: linear-gradient(#53dee9, #7645d9);
   margin-left: auto;
   margin-right: auto;
   width: 100%;
@@ -19,25 +18,39 @@ const StyledFarmStakingCard = styled(Card)`
 const CardMidContent = styled(Heading).attrs({ size: 'xl' })`
   line-height: 44px;
 `
+const Circle = styled.div`
+  background: #FEC803;
+  margin-top: -50px;
+  width: 59px;
+  height: 59px;
+  border-radius: 50%;
+  display: flex; 
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 40px;
+`
+
 const EarnAssetCard = () => {
   const activeNonCakePools = pools.filter((pool) => !pool.isFinished && !pool.earningToken.symbol.includes('CAKE'))
   const latestPools: Pool[] = orderBy(activeNonCakePools, ['sortOrder', 'pid'], ['desc', 'desc']).slice(0, 3)
   // Always include CAKE
-  const assets = ['CAKE', ...latestPools.map((pool) => pool.earningToken.symbol)].join(', ')
+  const assets = ['WINGS'].join(', ')
 
   return (
     <StyledFarmStakingCard>
       <CardBody>
-        <Heading color="contrast" size="lg">
+        <Heading color="text" size="lg">
           Earn
         </Heading>
-        <CardMidContent color="invertedContrast">{assets}</CardMidContent>
+        <CardMidContent color="extra">{assets}</CardMidContent>
         <Flex justifyContent="space-between">
-          <Heading color="contrast" size="lg">
+          <Heading color="text" size="lg">
             in Pools
           </Heading>
           <NavLink exact activeClassName="active" to="/syrup" id="pool-cta">
-            <ArrowForwardIcon mt={30} color="primary" />
+            <Circle>
+              <ArrowForwardIcon  color="#000000" />
+            </Circle>
           </NavLink>
         </Flex>
       </CardBody>

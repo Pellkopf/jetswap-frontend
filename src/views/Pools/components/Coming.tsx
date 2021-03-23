@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Image, Button } from '@pancakeswap-libs/uikit'
+import { Image, Button } from 'jetswap-uikit2'
 import { CommunityTag } from 'components/Tags'
 import useI18n from 'hooks/useI18n'
 import Card from './Card'
@@ -21,6 +21,7 @@ const Label = styled.div`
 const DetailPlaceholder = styled.div`
   display: flex;
   font-size: 14px;
+  color: ${({ theme }) => theme.colors.textDisabled};
 `
 const Value = styled.div`
   color: ${({ theme }) => theme.colors.text};
@@ -63,11 +64,11 @@ const Coming: React.FC = () => {
         <DetailPlaceholder>
           <div style={{ flex: 1 }}>
             <span role="img" aria-label="syrup">
-              🥞{' '}
+              🛢️{' '}
             </span>
             {TranslateString(384, 'Your Stake')}:
           </div>
-          <Value>??? CAKE</Value>
+          <Value>??? WINGS</Value>
         </DetailPlaceholder>
       </div>
       <Footer>

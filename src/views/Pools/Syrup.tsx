@@ -3,7 +3,7 @@ import { Route, useRouteMatch } from 'react-router-dom'
 import BigNumber from 'bignumber.js'
 import styled from 'styled-components'
 import { useWeb3React } from '@web3-react/core'
-import { Heading } from '@pancakeswap-libs/uikit'
+import { Heading, Text } from 'jetswap-uikit2'
 import orderBy from 'lodash/orderBy'
 import partition from 'lodash/partition'
 import useI18n from 'hooks/useI18n'
@@ -15,6 +15,7 @@ import PoolCard from './components/PoolCard'
 import PoolTabButtons from './components/PoolTabButtons'
 import Divider from './components/Divider'
 
+
 const Farm: React.FC = () => {
   const { path } = useRouteMatch()
   const TranslateString = useI18n()
@@ -22,6 +23,7 @@ const Farm: React.FC = () => {
   const pools = usePools(account)
   const { blockNumber } = useBlock()
   const [stackedOnly, setStackedOnly] = useState(false)
+
 
   const [finishedPools, openPools] = useMemo(
     () => partition(pools, (pool) => pool.isFinished || blockNumber > pool.endBlock),
@@ -33,40 +35,48 @@ const Farm: React.FC = () => {
   )
 
   return (
-    <Page>
-      <Hero>
-        <div>
-          <Heading as="h1" size="xxl" mb="16px">
-            {TranslateString(738, 'Syrup Pool')}
-          </Heading>
-          <ul>
-            <li>{TranslateString(580, 'Stake CAKE to earn new tokens.')}</li>
-            <li>{TranslateString(486, 'You can unstake at any time.')}</li>
-            <li>{TranslateString(406, 'Rewards are calculated per block.')}</li>
-          </ul>
-        </div>
-        <img src="/images/syrup.png" alt="SYRUP POOL icon" width={410} height={191} />
-      </Hero>
-      <PoolTabButtons stackedOnly={stackedOnly} setStackedOnly={setStackedOnly} />
-      <Divider />
-      <FlexLayout>
-        <Route exact path={`${path}`}>
-          <>
-            {stackedOnly
-              ? orderBy(stackedOnlyPools, ['sortOrder']).map((pool) => <PoolCard key={pool.sousId} pool={pool} />)
-              : orderBy(openPools, ['sortOrder']).map((pool) => <PoolCard key={pool.sousId} pool={pool} />)}
-            <Coming />
-          </>
-        </Route>
-        <Route path={`${path}/history`}>
-          {orderBy(finishedPools, ['sortOrder']).map((pool) => (
-            <PoolCard key={pool.sousId} pool={pool} />
-          ))}
-        </Route>
-      </FlexLayout>
-    </Page>
+    <Background>
+      <Page>
+        <Hero>
+          <div>
+            <Heading as="h1" size="xxl" mb="16px">
+              {TranslateString(738, 'Pilots Pool')}
+            </Heading>
+            <ul>
+              <li><Text>{TranslateString(580, 'Stake WINGS to earn new tokens.')}</Text></li>
+              <li><Text>{TranslateString(486, 'You can unstake at any time.')}</Text></li>
+              <li><Text>{TranslateString(406, 'Rewards are calculated per block.')}</Text></li>
+            </ul>
+          </div>
+          <img src="/images/syrup.svg" alt="SYRUP POOL icon" width={410} height={191} />
+        </Hero>
+        <PoolTabButtons stackedOnly={stackedOnly} setStackedOnly={setStackedOnly} />
+        <Divider />
+        <FlexLayout>
+          <Route exact path={`${path}`}>
+            <>
+              {stackedOnly
+                ? orderBy(stackedOnlyPools, ['sortOrder']).map((pool) => <PoolCard key={pool.sousId} pool={pool} />)
+                : orderBy(openPools, ['sortOrder']).map((pool) => <PoolCard key={pool.sousId} pool={pool} />)}
+              <Coming />
+            </>
+          </Route>
+          <Route path={`${path}/history`}>
+            {orderBy(finishedPools, ['sortOrder']).map((pool) => (
+              <PoolCard key={pool.sousId} pool={pool} />
+            ))}
+          </Route>
+        </FlexLayout>
+      </Page>
+    </Background>
   )
 }
+const Background = styled.div`
+  width: 100%;
+  background-image: url('/images/jet/bg4.svg');
+  background-repeat: no-repeat;
+  background-position: top right;
+`
 
 const Hero = styled.div`
   align-items: center;

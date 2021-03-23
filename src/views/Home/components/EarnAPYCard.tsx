@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react'
 import styled from 'styled-components'
-import { Heading, Card, CardBody, Flex, ArrowForwardIcon, Skeleton } from '@pancakeswap-libs/uikit'
+import { Heading, Card, CardBody, Flex, ArrowForwardIcon, Skeleton } from 'jetswap-uikit2'
 import max from 'lodash/max'
 import { NavLink } from 'react-router-dom'
 import useI18n from 'hooks/useI18n'
@@ -18,9 +18,23 @@ const StyledFarmStakingCard = styled(Card)`
     max-width: none;
   }
 `
-const CardMidContent = styled(Heading).attrs({ size: 'xl' })`
+const CardMidContent = styled(Heading).attrs({ size: 'lg' })`
   line-height: 44px;
+  Width: 75%;
+  color: ${({theme}) => theme.colors.extra}
 `
+const Circle = styled.div`
+  background: #FEC803;
+  margin-top: -50px;
+  width: 59px;
+  height: 59px;
+  border-radius: 50%;
+  display: flex; 
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 40px;
+`
+
 const EarnAPYCard = () => {
   const TranslateString = useI18n()
   const farmsLP = useFarms()
@@ -47,10 +61,10 @@ const EarnAPYCard = () => {
   return (
     <StyledFarmStakingCard>
       <CardBody>
-        <Heading color="contrast" size="lg">
+        <Heading color="text" size="lg">
           Earn up to
         </Heading>
-        <CardMidContent color="#7645d9">
+        <CardMidContent >
           {highestApy ? (
             `${highestApy}% ${TranslateString(736, 'APR')}`
           ) : (
@@ -58,11 +72,13 @@ const EarnAPYCard = () => {
           )}
         </CardMidContent>
         <Flex justifyContent="space-between">
-          <Heading color="contrast" size="lg">
+          <Heading color="text" size="lg">
             in Farms
           </Heading>
           <NavLink exact activeClassName="active" to="/farms" id="farm-apy-cta">
-            <ArrowForwardIcon mt={30} color="primary" />
+            <Circle>
+              <ArrowForwardIcon  color="#000000" />
+            </Circle>
           </NavLink>
         </Flex>
       </CardBody>

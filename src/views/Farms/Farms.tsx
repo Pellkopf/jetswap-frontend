@@ -3,7 +3,7 @@ import { Route, useRouteMatch, useLocation } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import BigNumber from 'bignumber.js'
 import { useWeb3React } from '@web3-react/core'
-import { Image, Heading, RowType, Toggle, Text } from '@pancakeswap-libs/uikit'
+import { Image, Heading, RowType, Toggle, Text } from 'jetswap-uikit2'
 import styled from 'styled-components'
 import FlexLayout from 'components/layout/Flex'
 import Page from 'components/layout/Page'
@@ -24,6 +24,7 @@ import { RowProps } from './components/FarmTable/Row'
 import ToggleView from './components/ToggleView/ToggleView'
 import { DesktopColumnSchema, ViewMode } from './components/types'
 import Select, { OptionProps } from './components/Select/Select'
+import JetFarming from './components/JetFarming'
 
 const ControlContainer = styled.div`
   display: flex;
@@ -98,15 +99,32 @@ const StyledImage = styled(Image)`
 
 const Header = styled.div`
   padding: 32px 0px;
-  background: ${({ theme }) => theme.colors.gradients.bubblegum};
+  background: ${({ theme }) => theme.colors.farming};
 
+  display: block;
   padding-left: 16px;
   padding-right: 16px;
 
   ${({ theme }) => theme.mediaQueries.sm} {
-    padding-left: 24px;
-    padding-right: 24px;
+    padding: 0 0 0 8.5%;
+    min-height: 190px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: center;
+    justify-content: center;
   }
+`
+
+const Container = styled.div``
+const Container2 = styled.div`
+  display: flex;
+  justify-content: center;
+`
+const Background = styled.div`
+  width: 100%;
+  background-image: url('/images/jet/bgf.svg');
+  background-repeat: no-repeat;
+  background-position: top 80px right;
 `
 
 const Farms: React.FC = () => {
@@ -291,61 +309,70 @@ const Farms: React.FC = () => {
   return (
     <>
       <Header>
-        <Heading as="h1" size="xxl" color="secondary" mb="24px">
-          {TranslateString(999, 'Farms')}
-        </Heading>
-        <Heading size="lg" color="text">
-          {TranslateString(999, 'Stake Liquidity Pool (LP) tokens to earn.')}
-        </Heading>
+        <Container>
+          <Heading as="h1" size="xxl" color="secondary" mb="24px">
+            {TranslateString(999, 'Farms')}
+          </Heading>
+          <Heading size="lg" color="text">
+            {TranslateString(999, 'Stake LP tokens to earn WINGS.')}
+          </Heading>
+        </Container>
+        <Container2> 
+          
+          <JetFarming />
+        </Container2>
       </Header>
-      <Page>
-        <ControlContainer>
-          <ViewControls>
-            <ToggleView viewMode={viewMode} onToggle={(mode: ViewMode) => setViewMode(mode)} />
-            <ToggleWrapper>
-              <Toggle checked={stackedOnly} onChange={() => setStackedOnly(!stackedOnly)} scale="sm" />
-              <Text> {TranslateString(1116, 'Staked only')}</Text>
-            </ToggleWrapper>
-            <FarmTabButtons />
-          </ViewControls>
-          <FilterContainer>
-            <LabelWrapper>
-              <Text>SORT BY</Text>
-              <Select
-                options={[
-                  {
-                    label: 'Hot',
-                    value: 'hot',
-                  },
-                  {
-                    label: 'APR',
-                    value: 'apr',
-                  },
-                  {
-                    label: 'Multiplier',
-                    value: 'multiplier',
-                  },
-                  {
-                    label: 'Earned',
-                    value: 'earned',
-                  },
-                  {
-                    label: 'Liquidity',
-                    value: 'liquidity',
-                  },
-                ]}
-                onChange={handleSortOptionChange}
-              />
-            </LabelWrapper>
-            <LabelWrapper style={{ marginLeft: 16 }}>
-              <Text>SEARCH</Text>
-              <SearchInput onChange={handleChangeQuery} value={query} />
-            </LabelWrapper>
-          </FilterContainer>
-        </ControlContainer>
-        {renderContent()}
-        <StyledImage src="/images/3dpan.png" alt="Pancake illustration" width={120} height={103} />
-      </Page>
+
+      <Background>
+        <Page>
+          <ControlContainer>
+            <ViewControls>
+              <ToggleView viewMode={viewMode} onToggle={(mode: ViewMode) => setViewMode(mode)} />
+              <ToggleWrapper>
+                <Toggle checked={stackedOnly} onChange={() => setStackedOnly(!stackedOnly)} scale="sm" />
+                <Text> {TranslateString(1116, 'Staked only')}</Text>
+              </ToggleWrapper>
+              <FarmTabButtons />
+            </ViewControls>
+            <FilterContainer>
+              <LabelWrapper>
+                <Text>SORT BY</Text>
+                <Select
+                  options={[
+                    {
+                      label: 'Hot',
+                      value: 'hot',
+                    },
+                    {
+                      label: 'APR',
+                      value: 'apr',
+                    },
+                    {
+                      label: 'Multiplier',
+                      value: 'multiplier',
+                    },
+                    {
+                      label: 'Earned',
+                      value: 'earned',
+                    },
+                    {
+                      label: 'Liquidity',
+                      value: 'liquidity',
+                    },
+                  ]}
+                  onChange={handleSortOptionChange}
+                />
+              </LabelWrapper>
+              <LabelWrapper style={{ marginLeft: 16 }}>
+                <Text>SEARCH</Text>
+                <SearchInput onChange={handleChangeQuery} value={query} />
+              </LabelWrapper>
+            </FilterContainer>
+          </ControlContainer>
+          {renderContent()}
+          <StyledImage src="/images/jet/farmjet.svg" alt="Jetswap illustration" width={120} height={103} />
+        </Page>
+      </Background>
     </>
   )
 }

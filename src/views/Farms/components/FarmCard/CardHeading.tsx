@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Tag, Flex, Heading, Image } from '@pancakeswap-libs/uikit'
+import { Tag, Flex, Heading, Image } from 'jetswap-uikit2'
 import { CommunityTag, CoreTag } from 'components/Tags'
 
 export interface ExpandableSectionProps {
@@ -19,6 +19,8 @@ const Wrapper = styled(Flex)`
 
 const MultiplierTag = styled(Tag)`
   margin-left: 4px;
+  color: ${({ theme }) => theme.colors.card};
+  background-color: ${({ theme }) => theme.colors.text};
 `
 
 const CardHeading: React.FC<ExpandableSectionProps> = ({

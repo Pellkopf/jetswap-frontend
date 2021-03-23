@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from 'react'
 import styled from 'styled-components'
-import { Heading, Card, CardBody, Button } from '@pancakeswap-libs/uikit'
+import { Heading, Card, CardBody, Button } from 'jetswap-uikit2'
 import { useWeb3React } from '@web3-react/core'
 import useI18n from 'hooks/useI18n'
 import { useAllHarvest } from 'hooks/useHarvest'
@@ -10,10 +10,16 @@ import CakeHarvestBalance from './CakeHarvestBalance'
 import CakeWalletBalance from './CakeWalletBalance'
 
 const StyledFarmStakingCard = styled(Card)`
-  background-image: url('/images/cake-bg.svg');
+  background-image: url('/images/jet/cardbg.svg');
   background-repeat: no-repeat;
-  background-position: top right;
   min-height: 376px;
+`
+const StyledUnlockButton = styled(UnlockButton)`
+
+  background: ${({ theme }) => theme.colors.button};
+  color: #ffffff;
+  width: 100%;
+  border-radius: 7px;
 `
 
 const Block = styled.div`
@@ -25,8 +31,8 @@ const CardImage = styled.img`
 `
 
 const Label = styled.div`
-  color: ${({ theme }) => theme.colors.textSubtle};
-  font-size: 14px;
+  color: ${({ theme }) => theme.colors.textDisabled};
+  font-size: 18px;
 `
 
 const Actions = styled.div`
@@ -59,13 +65,13 @@ const FarmedStakingCard = () => {
         <Heading size="xl" mb="24px">
           {TranslateString(542, 'Farms & Staking')}
         </Heading>
-        <CardImage src="/images/cake.svg" alt="cake logo" width={64} height={64} />
+        <CardImage src="/images/jet/wings.svg" alt="wings logo" width={64} height={64} />
         <Block>
-          <Label>{TranslateString(544, 'CAKE to Harvest')}:</Label>
+          <Label>{TranslateString(544, 'WINGS to Harvest')}:</Label>
           <CakeHarvestBalance />
         </Block>
         <Block>
-          <Label>{TranslateString(546, 'CAKE in Wallet')}:</Label>
+          <Label>{TranslateString(546, 'WINGS in Wallet')}:</Label>
           <CakeWalletBalance />
         </Block>
         <Actions>
@@ -75,15 +81,16 @@ const FarmedStakingCard = () => {
               disabled={balancesWithValue.length <= 0 || pendingTx}
               onClick={harvestAllFarms}
               width="100%"
+              
             >
               {pendingTx
-                ? TranslateString(548, 'Collecting CAKE')
+                ? TranslateString(548, 'Collecting WINGS')
                 : TranslateString(532, `Harvest all (${balancesWithValue.length})`, {
                     count: balancesWithValue.length,
                   })}
             </Button>
           ) : (
-            <UnlockButton width="100%" />
+            <StyledUnlockButton width="100%" />
           )}
         </Actions>
       </CardBody>

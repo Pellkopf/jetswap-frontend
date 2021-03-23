@@ -8651,10 +8651,10 @@ jest@26.6.0:
     import-local "^3.0.2"
     jest-cli "^26.6.0"
 
-jetswap-uikit2@^0.0.8:
-  version "0.0.8"
-  resolved "https://registry.yarnpkg.com/jetswap-uikit2/-/jetswap-uikit2-0.0.8.tgz#c71f36f17f81177c6fd44d60160131d77201d403"
-  integrity sha512-J87V8iqIjg1JvbD2/5wkBoYE0wQOZ2ZhVMwhHE/gicFXJDiNihKZcrjjSUAGbX3jEWnG2EjCu/7kK85sELTTnQ==
+jetswap-uikit2@^0.0.9:
+  version "0.0.9"
+  resolved "https://registry.yarnpkg.com/jetswap-uikit2/-/jetswap-uikit2-0.0.9.tgz#b35ee1062ac5fd0636d6f9d2e9b0b9998d72f94b"
+  integrity sha512-bgXUH6Z/e02iDnls9h6jwy/8p97ZEI2QAnPmf+yvsc0SbfPl8Ri2jWGTq0RHNgePPazvLeaSJRhLMLeKDNxW2w==
   dependencies:
     "@types/lodash" "^4.14.162"
     "@types/styled-system" "^5.1.10"
